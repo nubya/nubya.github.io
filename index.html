@@ -202,7 +202,7 @@
   
     <div class="article-meta">
       <a href="/2016/04/21/hello-world/" class="article-date">
-  	<time datetime="2016-04-21T03:33:56.277Z" itemprop="datePublished">2016-04-21</time>
+  	<time datetime="2016-04-21T04:18:01.683Z" itemprop="datePublished">2016-04-21</time>
 </a>
     </div>
   
@@ -288,28 +288,28 @@
         <h1 id="编程风格"><a href="#编程风格" class="headerlink" title="编程风格"></a><strong>编程风格</strong></h1><p>使用约定的风格, 可以减少协同工作的障碍, 建立程序猿之间的代码友谊. 虽然朋友说要对别人的代码宽容, 而我认为这就像纵容别人犯罪一样, 遵守一定的代码风格, 能瞬间拉近程序猿之间的距离, </p>
 <p><strong>简要的罗列一下建议遵守的编程风格(谷歌风格):</strong></p>
 <p>所有头文件都应该使用 #define 防止头文件被多重包含, 命名格式当是: <project><em><path></path></em><file><em>H</em><br>当只有数据时使用 struct, 其它一概使用class<br>在类中使用特定的声明顺序: public: 在 private: 之前, 成员函数在数据成员 (变量) 前<br>整数用0, 实数用0.0, 指针用NULL, 字符(串)用 ‘\0’.<br>类, 结构体, 类型定义 (typedef), 枚举的每个单词首字母均大写, 不包含下划线(大驼峰命名)<br>变量名一律小写, 单词之间用下划线连接. 类的成员变量以下划线结尾<br>常量和枚举类型命名在名称前加k: kDaysInAWeek<br>常规函数使用大小写混合(大驼峰命名), get和set函数则要求与变量名匹配(set函数前加set前缀)<br>逗号后添加空格<br>不建议使用using namesapce std</file></project></p>
-<p><strong>基础</strong><br>编译与执行:</p>
-<p>预处理阶段: 根据字符#开头的命令, 修改原始C程序<br>编译阶段: 将文本文件翻译成汇编程序<br>汇编阶段: 汇编器将编译程序翻译成机器语言指令(机器可识别), 并打包成可重定位目标程序<br>链接阶段: 将调用函数目标文件合并到程序中, 形成可执行目标文件<br>//使用GUN编译器g++, -o选项将输入写入文件, 即用来存放可执行文件<br>$ g++ chapter1.cc -o chapter<br>变量:</p>
+<p><strong>基础</strong><br><strong>编译与执行:</strong></p>
+<p>预处理阶段: 根据字符#开头的命令, 修改原始C程序<br>编译阶段: 将文本文件翻译成汇编程序<br>汇编阶段: 汇编器将编译程序翻译成机器语言指令(机器可识别), 并打包成可重定位目标程序<br>链接阶段: 将调用函数目标文件合并到程序中, 形成可执行目标文件<br>//使用GUN编译器g++, -o选项将输入写入文件, 即用来存放可执行文件<br>$ g++ chapter1.cc -o chapter<br><strong>变量:</strong></p>
 <p>变量的作用我认为有以下几点:</p>
-<p>给一定大小的内存命名, 方便使用和增加可读性<br>通过变量的类型, 来决定到底访问几个字节长的内存<br>通过变量的来决定如何解释所读取的内存的数据(如有符号数和无符号数的解释不同)<br>左值与右值:</p>
-<p>左值可以出现在赋值语句的左边<br>右值只能出现在赋值的右边, 不能出现在赋值语句的左边<br>const关键字:</p>
+<p>给一定大小的内存命名, 方便使用和增加可读性<br>通过变量的类型, 来决定到底访问几个字节长的内存<br>通过变量的来决定如何解释所读取的内存的数据(如有符号数和无符号数的解释不同)<br><strong>左值与右值:</strong></p>
+<p>左值可以出现在赋值语句的左边<br>右值只能出现在赋值的右边, 不能出现在赋值语句的左边<br><strong>const关键字:</strong></p>
 <p>通过指定const变量为extern, 可以在整个程序中访问const对象<br>const引用是指向const对象的引用, 对象可读不可写<br>指向const对象的指针, 定义时不需要初始化, 可以对指针重新赋值(修改其中保存的内存地址, 指向其他对象), 但所指向对象中的值不能修改(内存中保存的值不能修改)<br>const指针, const指针的值(保存的内存地址的值不能修改)不能修改, 也就是不能使const指针指向其他对象<br>指向const对象的const指针, 既不能修改指针所指向的对象值(内存地址中保存的值), 也不能修改指针的指向(指针中保存的内存地址)<br>// file1.cc<br>extern const int buf_size = 10;<br>// file2.cc<br>extern const int buf_size; //使用file1.cc中的buf_size</p>
-<p>//指向const对象的指针<br>const double <em>cptr;<br>//const指针<br>int err_numb = 2;<br>int </em>const cur_err = &amp;err_numb;<br>预处理器:</p>
+<p>//指向const对象的指针<br>const double <em>cptr;<br>//const指针<br>int err_numb = 2;<br>int </em>const cur_err = &amp;err_numb;<br><strong>预处理器:</strong></p>
 <p>使用预处理器变量避免头文件的多重包含<br>常用格式:</p>
-<p>#ifndef _XXX<em>H</em></p>
-<p>#define _XXX<em>H</em></p>
-<p>…</p>
-<p>#endif /<em> _XXX<em>H</em> </em>/<br>指针:</p>
-<p>指针保存的是对象的地址<br>数组名会自动转换为指向数组第一个元素的指针.<br>数组的下标访问数组时实际上是使用下标访问指针, 指针是数组的迭代器<br>当类中有指针数据成员, 不能使用系统自带的拷贝构造函数(系统默认导致浅拷贝, 两个对象指针指向同一块动态分配的内存)/赋值函数(=操作符重载), 请自定义(深拷贝)<br>自增/自减操作符</p>
-<p>前自增操作加1后返回加1的结果<br>后自增操作保存操作数原来的值, 返回未加1之前的值作为操作的结构<br>自减操作符类似与自增操作符<br>sizeof操作符</p>
+<p>#<code>ifndef _XXX_H_</code></p>
+<p>#<code>define _XXX_H_</code></p>
+<p><code>...</code></p>
+<p>#<code>endif /* _XXX_H_ */</code><br><strong>指针:</strong></p>
+<p>指针保存的是对象的地址<br>数组名会自动转换为指向数组第一个元素的指针.<br>数组的下标访问数组时实际上是使用下标访问指针, 指针是数组的迭代器<br>当类中有指针数据成员, 不能使用系统自带的拷贝构造函数(系统默认导致浅拷贝, 两个对象指针指向同一块动态分配的内存)/赋值函数(=操作符重载), 请自定义(深拷贝)<br><strong>自增/自减操作符</strong></p>
+<p>前自增操作加1后返回加1的结果<br>后自增操作保存操作数原来的值, 返回未加1之前的值作为操作的结构<br>自减操作符类似与自增操作符<br><strong>sizeof操作符</strong></p>
 <p>注意sizeof是操作符, 用于获得类型的长度<br>对数组做sizeof操作等效于将对其元素类型做sizeof操作的结果乘上数组元素的个数.<br>对指针做sizeof将返回存放指针所需的内存大小<br>对引用做sizeof将返回存放此引用类型对象所需所需的内存大小<br>switch语句执行匹配的case标号相关联的语句后, 会跨越case边界继续执行其他语句, 直到switch结束或者遇到break.<br>复制传参(pass by value)和引用/指针传参(pass by reference):</p>
-<p>复制传参无法改变传入实参的值<br>复制传参增加了时间和存储空间的开销, 尽量减少pass by value<br>引用传参相当于传指针<br>返回值也要尽量传递引用(不要返回局部变量的引用)<br>static对象:</p>
+<p>复制传参无法改变传入实参的值<br>复制传参增加了时间和存储空间的开销, 尽量减少pass by value<br>引用传参相当于传指针<br>返回值也要尽量传递引用(不要返回局部变量的引用)<br><strong>static对象:</strong></p>
 <p>类内staitc数据成员不属于某个对象(类内声明, 类外定义). 类内static函数没有this指针(用于处理staitc数据成员)<br>static成员必须在class定义式之外被定义(除非他们是const并且是整型)</p>
 <p>class Test {<br>public:<br>    Test(const int p): price(p) { std::cout &lt;&lt; “constructor Test.” &lt;&lt; std::endl; }<br>    void setRate(const double r) { this-&gt;rate = r; }<br>    double getRate() { return rate; };<br>private:<br>    static double rate;  //declare<br>    int price;<br>};<br>double Test::rate = 0.53;  //define</p>
 <p>int main(int argc, char *argv[]) {<br>    Test t(10);<br>    Test t1(20);<br>    std::cout &lt;&lt; t.getRate() &lt;&lt; std::endl;<br>    std::cout &lt;&lt; t1.getRate() &lt;&lt; std::endl;<br>    t.setRate(2.22);<br>    std::cout &lt;&lt; t.getRate() &lt;&lt; std::endl;<br>}<br>一旦创建static对象被创建, 在程序结束前不会被销毁. 常用于生命周期跨越多个函数调用的对象</p>
-<p>inline函数:</p>
-<p>普通函数被调用: 调用前保存寄存器, 返回时恢复上下文, 复制实参, 程序还必须转向一个新的位置执行<br>inline函数在编译时被展开, 从而消除额外的函数执行开销, 常用于小操作函数.内联函数要在头文件中定义<br>重载函数:</p>
-<p>确认候选函数(C++名字查找发生在类型检查之前)<br>检查形参个数和形参类型匹配问题<br>函数指针:</p>
+<p><strong>inline函数:</strong></p>
+<p>普通函数被调用: 调用前保存寄存器, 返回时恢复上下文, 复制实参, 程序还必须转向一个新的位置执行<br>inline函数在编译时被展开, 从而消除额外的函数执行开销, 常用于小操作函数.内联函数要在头文件中定义<br><strong>重载函数:</strong></p>
+<p>确认候选函数(C++名字查找发生在类型检查之前)<br>检查形参个数和形参类型匹配问题<br><strong>函数指针:</strong></p>
 <p>重点理解: 函数指针是指向函数的指针<br>直接使用函数名等效于在函数名上取地址操作符</p>
 <p>// pf是一个指针, <em>表明了pf的指针身份, pf的类型为bool (const string &amp;, const string &amp;)<br>bool (</em>pf)(const string &amp;, const string &amp;);<br>//类比与普通变量指针, <em>表示ps是指针, ps的类型为const string<br>const string </em>ps;<br>// typedef简化函数指针定义 cmpFun等价于bool <em> (const string &amp;, const string &amp;)<br>typedef bool (</em>cmpFun)(const string &amp;, const string &amp;);<br>cmpFun pf;<br>//typedef简化普通变量指针 pstr等价于 const string <em><br>typedef const string </em>p_str;<br>pstr ps;<br>Stack和Heap<br>Stack是存在于某作用域的一块内存空间<br>Heap是由操作系统提供的一块全局内存空间(可动态分配获得此类空间)</p>
 <p>namespace<br>标准库中所有文件被包裹在std命名空间中.</p>
